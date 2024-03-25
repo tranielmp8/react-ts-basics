@@ -2,19 +2,20 @@ import CourseGoal from "./CourseGoal"
 import { type CourseGoal as CoursGoalType } from "../App"
 
 type CourseGoalListProps = {
-  goals: CoursGoalType[]
+  goals: CoursGoalType[];
+  onDeleteGoal: (id: number) => void;
 }
 
-export default function ({goals}: CourseGoalListProps) {
+export default function CourseGoalList({goals, onDeleteGoal}: CourseGoalListProps) {
   return (
-    <div>
+    <ul>
       {goals.map((goal) => (
         <li key={goal.id}>
-          <CourseGoal title={goal.title} >
+          <CourseGoal id={goal.id} title={goal.title} onDelete={onDeleteGoal} >
             <p>{ goal.description }</p>
           </CourseGoal>
         </li>
       ))}
-    </div>
+    </ul>
   )
 }
